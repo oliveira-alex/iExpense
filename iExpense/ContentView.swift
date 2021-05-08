@@ -10,7 +10,7 @@ import SwiftUI
 // Conforme to the Identifiable protocol so ForEach using ExpenseItems doesn't need an "id" as and additional argument
 // Conforme to the Codable protocol so JSONEncoder can be used to save the items array to UserDefaults
 struct ExpenseItem: Identifiable, Codable {
-    let id = UUID()
+    var id = UUID()
     let name: String
     let type: String
     let amount: Int
@@ -49,7 +49,16 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(expenses.items) { item in
-                    Text(item.name)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(item.name)
+                                .font(.headline)
+                            Text(item.type)
+                        }
+                        
+                        Spacer()
+                        Text("$ \(item.amount)")
+                    }
                 }
                 .onDelete(perform: removeItems)
             }
