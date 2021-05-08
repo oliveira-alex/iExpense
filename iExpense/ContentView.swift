@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ExpenseItem {
+struct ExpenseItem: Identifiable { // conforming to the Identifiable protocol, so ForEach using ExpenseItems doesn't need an "id" as and additional argument
+    let id = UUID()
     let name: String
     let type: String
     let amount: Int
@@ -23,7 +24,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(expenses.items, id: \.name) { item in
+                ForEach(expenses.items) { item in
                     Text(item.name)
                 }
                 .onDelete(perform: removeItems)
