@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E765A35E2646FD42003B3E2C /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765A35D2646FD42003B3E2C /* AddView.swift */; };
 		E7E71058264596C2004676DD /* iExpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E71057264596C2004676DD /* iExpenseApp.swift */; };
 		E7E7105A264596C2004676DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E71059264596C2004676DD /* ContentView.swift */; };
 		E7E7105C264596C3004676DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7E7105B264596C3004676DD /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E765A35D2646FD42003B3E2C /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = SOURCE_ROOT; };
 		E7E71054264596C2004676DD /* iExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7E71057264596C2004676DD /* iExpenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iExpenseApp.swift; sourceTree = "<group>"; };
 		E7E71059264596C2004676DD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 		E7E71056264596C2004676DD /* iExpense */ = {
 			isa = PBXGroup;
 			children = (
+				E765A35D2646FD42003B3E2C /* AddView.swift */,
 				E7E71057264596C2004676DD /* iExpenseApp.swift */,
 				E7E71059264596C2004676DD /* ContentView.swift */,
 				E7E7105B264596C3004676DD /* Assets.xcassets */,
@@ -140,6 +143,7 @@
 			files = (
 				E7E7105A264596C2004676DD /* ContentView.swift in Sources */,
 				E7E71058264596C2004676DD /* iExpenseApp.swift in Sources */,
+				E765A35E2646FD42003B3E2C /* AddView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
