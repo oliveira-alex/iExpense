@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct ExpenseItem: Identifiable { // conforming to the Identifiable protocol, so ForEach using ExpenseItems doesn't need an "id" as and additional argument
+// Conforme to the Identifiable protocol so ForEach using ExpenseItems doesn't need an "id" as and additional argument
+// Conforme to the Codable protocol so JSONEncoder can be used to save the items array to UserDefaults
+struct ExpenseItem: Identifiable, Codable {
     let id = UUID()
     let name: String
     let type: String
@@ -15,7 +17,28 @@ struct ExpenseItem: Identifiable { // conforming to the Identifiable protocol, s
 }
 
 class Expenses: ObservableObject {
-    @Published var items = [ExpenseItem]()
+    @Published var items = [ExpenseItem]() {
+        didSet {
+            let encoder = JSONEncoder()
+            
+            if let encoded = try? encoder.encode(items) {
+                UserDefaults.standard.set(encoded, forKey: "Items")
+            }
+        }
+    }
+    
+    init() {
+        if let items = UserDefaults.standard.data(forKey: "Items") {
+            let decoder = JSONDecoder()
+            
+            if let decoded = try? decoder.decode([ExpenseItem].self, from: items) {
+                self.items = decoded
+                return
+            }
+        }
+        
+        self.items = []
+    }
 }
 
 struct ContentView: View {
@@ -31,12 +54,12 @@ struct ContentView: View {
                 .onDelete(perform: removeItems)
             }
             .navigationBarTitle("iExpense")
-            .navigationBarItems(trailing:
-                                    Button(action: {
-                                        self.showingAddExpense.toggle()
-                                    }) {
-                                        Image(systemName: "plus")
-                                    }
+            .navigationBarItems(trailing: Button(
+                action: {
+                    self.showingAddExpense.toggle()
+                }) {
+                    Image(systemName: "plus")
+                }
             )
             .sheet(isPresented: $showingAddExpense) {
                 AddView(expenses: self.expenses)
