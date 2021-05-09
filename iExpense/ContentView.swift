@@ -58,6 +58,7 @@ struct ContentView: View {
                         
                         Spacer()
                         Text("$ \(item.amount)")
+                            .fontWeight(item.amount < 10 ? .ultraLight : (item.amount < 100 ? .light : .heavy))
                     }
                 }
                 .onDelete(perform: removeItems)
