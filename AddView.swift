@@ -30,14 +30,17 @@ struct AddView: View {
                     .keyboardType(.numberPad)
             }
             .navigationBarTitle("Add new expense")
-            .navigationBarItems(trailing: Button("Save") {
-                if let actualAmount = Int(self.amount) {
-                    let item = ExpenseItem(name: self.name, type: self.type, amount: actualAmount)
-                    
-                    self.expenses.items.append(item)
-                    self.presentationMode.wrappedValue.dismiss()
+            .navigationBarItems(
+                leading: Button("Cancel") { self.presentationMode.wrappedValue.dismiss() },
+                trailing: Button("Save") {
+                    if let actualAmount = Int(self.amount) {
+                        let item = ExpenseItem(name: self.name, type: self.type, amount: actualAmount)
+                        
+                        self.expenses.items.append(item)
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
                 }
-            })
+            )
         }
     }
 }
