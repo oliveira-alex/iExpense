@@ -15,6 +15,10 @@ struct AddView: View {
     @State private var amount = ""
     static let types = ["Business", "Personal"]
     
+    @State private var showingAlert = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
+    
     var body: some View {
         NavigationView {
             Form {
@@ -38,9 +42,20 @@ struct AddView: View {
                         
                         self.expenses.items.append(item)
                         self.presentationMode.wrappedValue.dismiss()
+                    } else if self.amount == "" {
+                        self.alertTitle = "Missing value"
+                        self.alertMessage = "Please inform the amount of the expense"
+                        self.showingAlert.toggle()
+                    } else {
+                        self.alertTitle = "Only integers"
+                        self.alertMessage = "'\(self.amount)' is not an integer"
+                        self.showingAlert.toggle()
                     }
                 }
             )
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+            }
         }
     }
 }
